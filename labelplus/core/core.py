@@ -39,6 +39,7 @@ import copy
 import datetime
 import logging
 import os
+from time import sleep
 
 import twisted.internet
 
@@ -733,7 +734,7 @@ class Core(CorePluginBase):
 
   @check_init
   def on_torrent_added(self, torrent_id):
-
+    sleep(3.0)
     label_id = self._do_autolabel_torrent(torrent_id)
 
     if label_id != labelplus.common.label.ID_NONE:
@@ -1616,7 +1617,7 @@ class Core(CorePluginBase):
 
 
   def _do_autolabel_torrent(self, torrent_id):
-
+    
     assert(torrent_id in self._torrents)
 
     label_id = self._find_autolabel_match(torrent_id)
@@ -1630,7 +1631,7 @@ class Core(CorePluginBase):
 
 
   def _do_autolabel_torrents(self, label_id, apply_to_all=False):
-
+    
     assert(label_id in self._labels)
 
     changed = False
